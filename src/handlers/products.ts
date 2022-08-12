@@ -5,8 +5,8 @@ const product = new Products()
 export const productsRoutes = (app: express.Application) => {
     app.get('/product/index', index)
     app.post('/product/create', create)
-    app.get('/product/index/:id', show)
-    app.get('/product/indexByCategory',byCategory)
+    app.get('/product/:id', show)
+    app.get('/product/category/:cat',byCategory)
 }
 const create = async (req: Request, res: Response) => {
     try {
@@ -38,8 +38,8 @@ const show = async (req: Request, res: Response) => {
 }
 const byCategory = async (req: Request, res: Response) => {
     try {
-        const category = req.body.category
-        res.json(await product.byProduct(category))
+        const category = req.params.cat
+        res.json(await product.byCategory(category))
     } catch (error) {
         res.status(400).send(`${error}`)
     }

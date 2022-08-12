@@ -43,7 +43,7 @@ export class Products {
             throw new Error(`${error}`)
         }
     }
-    async byProduct(category: string): Promise<Product[]>{
+    async byCategory(category: string): Promise<Product[]>{
         try {
             console.log(category)
             const conn = await client.connect()

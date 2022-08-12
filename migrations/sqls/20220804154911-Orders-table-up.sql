@@ -1,5 +1,5 @@
 CREATE TABLE Orders (
-    id SERIAL PRIMARY KEY ,
-    user_id INTEGER REFERENCES Users(user_id) NOT NULL,
+    order_id SERIAL PRIMARY KEY ,
+    user_id INTEGER REFERENCES Users(user_id) NOT NULL UNIQUE,
     status BOOLEAN NOT NULL DEFAULT TRUE
     );

@@ -18,11 +18,11 @@ const create = async (req: Request, res: Response) => {
 }
 
 export const userRoutes = (app: express.Application) => {
-  app.post('/signUp', create)
-  app.get('/index', index)
-  app.get('/index/:id', show)
-  app.put('/update/:id', update)
-  app.delete('/delete/:id',remove)
+  app.post('/user/signUp', create)
+  app.get('/user/index', index)
+  app.get('/user/:id', show)
+  app.put('/user/:id/update', update)
+  app.delete('/user/:id/delete',remove)
 }
 
 const index = async (req: Request, res: Response) => {

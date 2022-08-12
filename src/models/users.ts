@@ -14,6 +14,7 @@ export class Users {
         const conn = await client.connect()
         const sql =
           'INSERT INTO Users (firstName,lastName,password) VALUES ($1,$2,$3) RETURNING *;'
+        console.log(user)
         const hash = bcrypt.hashSync(user.password+PEPPER,parseInt(SALT as string))
         const result = await conn.query(sql, [
           user.firstName,
