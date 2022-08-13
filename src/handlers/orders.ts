@@ -1,16 +1,17 @@
 import express, { Request, Response } from 'express'
+import { authMidd } from '../middleware/auth'
 import { Order, Orders } from '../models/orders'
 import { Ordered_Product } from '../models/orders'
 
 const order = new Orders()
 
 export const ordersRoutes = (app:express.Application) => {
-    app.post('/user/:id/addOrder', createOrder)
-    app.post('/order/user/:id/addProduct',addProduct)
-    app.post('/order/user/:id/setStatus',setStatus)
-    app.get('/order/user/:id/current', getCurrentOrder)
-    app.get('/order/user/:id/completed', getCompletedOrder)
-    app.get('/order/user/:id/show', show)
+    app.post('/user/:id/addOrder',authMidd, createOrder)
+    app.post('/order/user/:id/addProduct',authMidd, addProduct)
+    app.post('/order/user/:id/setStatus',authMidd, setStatus)
+    app.get('/order/user/:id/current',authMidd, getCurrentOrder)
+    app.get('/order/user/:id/completed',authMidd, getCompletedOrder)
+    app.get('/order/user/:id/show',authMidd, show)
 }
 
 const createOrder = async (req: Request, res: Response) => {

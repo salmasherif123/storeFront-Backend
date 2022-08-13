@@ -1,12 +1,13 @@
 import express, { Request, Response } from 'express'
+import { authMidd, roleMidd } from '../middleware/auth'
 import { Product, Products } from '../models/products'
 
 const product = new Products()
 export const productsRoutes = (app: express.Application) => {
-    app.get('/product/index', index)
-    app.post('/product/create', create)
-    app.get('/product/:id', show)
-    app.get('/product/category/:cat',byCategory)
+    app.get('/product/index',authMidd, index)
+    app.post('/product/create',authMidd,roleMidd('admin'), create)
+    app.get('/product/:id',authMidd, show)
+    app.get('/product/category/:cat',authMidd,byCategory)
 }
 const create = async (req: Request, res: Response) => {
     try {
