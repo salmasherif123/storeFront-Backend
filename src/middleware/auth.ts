@@ -23,7 +23,6 @@ export const roleMidd =
       const autherHeader = req.headers.authorization as string
       const token = autherHeader.split(' ')[1]
         const user: User = (Jwt.decode(token) as JwtPayload).user as User
-        console.log(user)
       if (user.role !== role) {
         throw new Error()
       }

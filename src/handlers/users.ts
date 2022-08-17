@@ -17,8 +17,8 @@ export const userRoutes = (app: express.Application) => {
 
 const create = async (req: Request, res: Response) => { 
   const newUser: User = {
-    firstName: req.body.firstName as string,
-    lastName: req.body.lastName as string,
+    firstname: req.body.firstname as string,
+    lastname: req.body.lastname as string,
     password: req.body.password as string,
     role: req.body.role as string,
   }
@@ -33,16 +33,16 @@ const create = async (req: Request, res: Response) => {
 const authenticate = async (req: Request, res: Response) => {
   try {
     const signedUser: User = {
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       password: req.body.password,
       role : req.body.role
     }
     const authUser = await user.authenticate(signedUser) as User
     const token = jwt.sign({
       user: {
-        firstName: authUser.firstName,
-        lastName: authUser.lastName,
+        firstname: authUser.firstname,
+        lastname: authUser.lastname,
         password: authUser.password
     } }, TOKEN_SECRET as string)
     res.json(token)
@@ -75,8 +75,8 @@ const update = async (req: Request, res: Response) => {
   try {
     const id = parseInt(req.params.id as string)
     const updatedUser: User = {
-      firstName: req.body.firstName as string,
-      lastName: req.body.lastName as string,
+      firstname: req.body.firstname as string,
+      lastname: req.body.lastname as string,
       password: req.body.password as string,
       role: req.body.role as string,
     }

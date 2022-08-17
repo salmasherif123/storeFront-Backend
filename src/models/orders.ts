@@ -1,10 +1,12 @@
 import client from '../database'
 
 export type Order = {
+    order_id?:number,
     userId:number,
     status:boolean,
 }
 export type Ordered_Product = {
+    ordered_product_id?:number,
     userId: number,
     productId: number,
     quantity:number

@@ -3,26 +3,26 @@ import bcrypt from 'bcrypt'
 
 const {PEPPER,SALT}=process.env
 export type User = {
-  firstName: string
-  lastName: string
+  user_id?:number,
+  firstname: string
+  lastname: string
   password: string
   role:string
 }
 export class Users {
   async create(user: User): Promise<User> {
     try {
-      if (user.firstName && user.lastName && user.password) {
+      if (user.firstname && user.lastname && user.password) {
         if (!user.role) {
           user.role='user'
         }
         const conn = await client.connect()
         const sql =
           'INSERT INTO Users (firstName,lastName,password,role) VALUES ($1,$2,$3,$4) RETURNING *;'
-        console.log(user)
         const hash = bcrypt.hashSync(user.password+PEPPER,parseInt(SALT as string))
         const result = await conn.query(sql, [
-          user.firstName,
-          user.lastName,
+          user.firstname,
+          user.lastname,
           hash,
           user.role
         ])
@@ -40,7 +40,7 @@ export class Users {
     try {
       const conn = await client.connect()
       const sql = 'SELECT password FROM Users WHERE firstName=($1) and lastName=($2);'
-      const result = await conn.query(sql,[user.firstName,user.lastName])
+      const result = await conn.query(sql,[user.firstname,user.lastname])
       conn.release()
       if (result.rowCount) {
         if (bcrypt.compareSync(user.password+PEPPER,result.rows[0].password)) {
@@ -79,13 +79,13 @@ export class Users {
   async update(user: User, id: number): Promise<void> {
     try {
       const conn = await client.connect()
-      if (user.firstName) {
-        const sql = 'UPDATE Users SET firstName=($1) WHERE user_id=($2);'
-        await conn.query(sql, [user.firstName, id])
+      if (user.firstname) {
+        const sql = 'UPDATE Users SET firstname=($1) WHERE user_id=($2);'
+        await conn.query(sql, [user.firstname, id])
       }
-      if (user.lastName) {
+      if (user.lastname) {
         const sql = 'UPDATE Users SET lastName=($1) WHERE user_id=($2);'
-        await conn.query(sql, [user.lastName, id])
+        await conn.query(sql, [user.lastname, id])
       }
       if (user.password) {
         const sql = 'UPDATE Users SET password=($1) WHERE user_id=($2);'
