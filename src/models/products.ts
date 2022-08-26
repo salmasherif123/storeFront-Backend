@@ -8,7 +8,7 @@ export type Product = {
 }
 
 export class Products {
-  async create(product: Product): Promise<Product> {
+  async create (product: Product): Promise<Product> {
     try {
       let result
       const conn = await client.connect()
@@ -19,7 +19,7 @@ export class Products {
         result = await conn.query(sql, [
           product.name,
           product.price,
-          product.category,
+          product.category
         ])
       } else {
         result = await conn.query(sql, [product.name, product.price])
@@ -30,7 +30,8 @@ export class Products {
       throw new Error(`${error}`)
     }
   }
-  async index(): Promise<Product[]> {
+
+  async index (): Promise<Product[]> {
     try {
       const conn = await client.connect()
       const sql = 'SELECT * FROM Products;'
@@ -41,7 +42,8 @@ export class Products {
       throw new Error(`${error}`)
     }
   }
-  async show(id: number): Promise<Product> {
+
+  async show (id: number): Promise<Product> {
     try {
       const conn = await client.connect()
       const sql = 'SELECT * FROM Products WHERE product_id=($1);'
@@ -52,7 +54,8 @@ export class Products {
       throw new Error(`${error}`)
     }
   }
-  async byCategory(category: string): Promise<Product[]> {
+
+  async byCategory (category: string): Promise<Product[]> {
     try {
       const conn = await client.connect()
       const sql = 'SELECT * FROM Products WHERE category=($1);'

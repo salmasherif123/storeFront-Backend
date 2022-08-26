@@ -8,14 +8,14 @@ const port = 3000
 const app = express()
 
 app.get('/', (req, res) => {
-    res.send('Hello')
+  res.send('Hello')
 })
 
 app.listen(port, () => {
-    console.log(`http://localhost:${port}`)
+  console.log(`http://localhost:${port}`)
 })
 app.use(bodyParser.json())
 productsRoutes(app)
 userRoutes(app)
 ordersRoutes(app)
-export default app 
+export default app

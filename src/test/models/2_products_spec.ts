@@ -1,12 +1,12 @@
-import jasmine from 'jasmine'
+/* eslint no-undef:"off" */
 import { Product, Products } from '../../models/products'
 
 const product = new Products()
 const newProduct: Product = {
-  product_id:1,
+  product_id: 1,
   name: 'testProduct',
   price: 10,
-  category: 'testCat',
+  category: 'testCat'
 }
 describe('product model test', () => {
   it('should have create method', () => {
