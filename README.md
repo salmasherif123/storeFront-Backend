@@ -12,9 +12,17 @@ install dotenv using command to write database variables in it `npm i dotenv` an
 
 1. connect to `psql`
 
-2. create the database `create database database-name;`
+2. create the database `create database storefront;`
 
-3. connect to the database using `\c database-name;`
+3. connect to the database using `\c storefront;`
+
+#### To connect to the testing database
+
+1. connect to `psql`
+
+2. create the database `create database storefront_test;`
+
+3. connect to the database using `\c storefront_test;`
 
 #### Ports:
 
