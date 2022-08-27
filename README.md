@@ -30,6 +30,20 @@ install dotenv using command to write database variables in it `npm i dotenv` an
 
 `5432` -> **database port**
 
+#### run commands:
+
+**to run routes test :**
+
+`npm run test-r`   
+
+**to run models test :**
+
+`npm run test-m`   
+
+**to run the server :**
+
+`npm run start`   
+
 ### dotenv file
 
 1. POSTGRES_HOST= localhost
