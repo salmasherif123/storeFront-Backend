@@ -84,7 +84,7 @@ describe('order model test', () => {
       createdOrderedProduct.ordered_product_id
     )
   })
-  it('should setStatus method returns ', async () => {
+  it('should setStatus method returns updatedStatus', async () => {
     createdOrder.status = false
     await order.setStatus(createdOrder)
   })

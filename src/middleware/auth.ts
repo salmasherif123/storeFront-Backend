@@ -9,7 +9,6 @@ export const authMidd = (req: Request, res: Response, next: NextFunction) => {
     const verify = (Jwt.verify(token, TOKEN_SECRET as Secret) as JwtPayload)
       .user
     if (verify.user_id !== parseInt(req.params.id)) {
-      console.log(verify)
       throw new Error()
     }
     next()

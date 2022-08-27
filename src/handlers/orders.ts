@@ -5,12 +5,12 @@ import { Order, Orders, OrderedProduct } from '../models/orders'
 const order = new Orders()
 
 export const ordersRoutes = (app: express.Application) => {
-  app.post('/user/:id/addOrder', authMidd, createOrder)
-  app.post('/order/user/:id/addProduct', authMidd, addProduct)
-  app.post('/order/user/:id/setStatus', authMidd, setStatus)
-  app.get('/order/user/:id/current', authMidd, getCurrentOrder)
-  app.get('/order/user/:id/completed', authMidd, getCompletedOrder)
-  app.get('/order/user/:id/show', authMidd, show)
+  app.post('/user/:id/order/addOrder', authMidd, createOrder)
+  app.post('/user/:id/order/addProduct', authMidd, addProduct)
+  app.put('/user/:id/order/setStatus', authMidd, setStatus)
+  app.get('/user/:id/order/current', authMidd, getCurrentOrder)
+  app.get('/user/:id/order/completed', authMidd, getCompletedOrder)
+  app.get('/user/:id/order/show', authMidd, show)
 }
 
 const createOrder = async (req: Request, res: Response) => {
@@ -22,7 +22,7 @@ const createOrder = async (req: Request, res: Response) => {
     const createdOrder = await order.createOrder(newOrder)
     res.json(createdOrder)
   } catch (error) {
-    res.status(400).send(`${error}`)
+    res.status(401).send(`${error}`)
   }
 }
 const addProduct = async (req: Request, res: Response) => {
@@ -34,7 +34,7 @@ const addProduct = async (req: Request, res: Response) => {
     }
     res.json(await order.addProduct(newOrderedProduct))
   } catch (error) {
-    res.status(400).send(`${error}`)
+    res.status(401).send(`${error}`)
   }
 }
 const getCurrentOrder = async (req: Request, res: Response) => {
@@ -42,7 +42,7 @@ const getCurrentOrder = async (req: Request, res: Response) => {
     const id = req.params.id
     res.json(await order.CurrentOrder(parseInt(id)))
   } catch (error) {
-    res.status(400).send(`${error}`)
+    res.status(401).send(`${error}`)
   }
 }
 const getCompletedOrder = async (req: Request, res: Response) => {
@@ -50,7 +50,7 @@ const getCompletedOrder = async (req: Request, res: Response) => {
     const id = req.params.id
     res.json(await order.CompletedOrder(parseInt(id)))
   } catch (error) {
-    res.status(400).send(`${error}`)
+    res.status(401).send(`${error}`)
   }
 }
 const setStatus = async (req: Request, res: Response) => {
@@ -62,13 +62,13 @@ const setStatus = async (req: Request, res: Response) => {
     await order.setStatus(newStatus)
     res.json(await order.show(newStatus.user_id))
   } catch (error) {
-    res.status(400).send(`${error}`)
+    res.status(401).send(`${error}`)
   }
 }
 const show = async (req: Request, res: Response) => {
   try {
     res.json(await order.show(parseInt(req.params.id)))
   } catch (error) {
-    res.status(400).send(`${error}`)
+    res.status(401).send(`${error}`)
   }
 }
