@@ -32,13 +32,9 @@ install dotenv using command to write database variables in it `npm i dotenv` an
 
 #### run commands:
 
-**to run routes test :**
+**to run test :**
 
-`npm run test-r`   
-
-**to run models test :**
-
-`npm run test-m`   
+`npm run test`   
 
 **to run the server :**
 
