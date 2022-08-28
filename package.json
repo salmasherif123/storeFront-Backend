@@ -9,6 +9,7 @@
     "jasmine": "jasmine",
     "test-m": "db-migrate reset --config ./database.json --e test &set ENV=test& db-migrate up --config ./database.json --e test&npm run build& jasmine build/test/models/*.js& db-migrate --config ./database.json --e test up & db-migrate reset --config ./database.json --e test",
     "test-r": "db-migrate reset --config ./database.json --e test &set ENV=test& db-migrate up --config ./database.json --e test&npm run build& jasmine build/test/handlers/*.js & db-migrate --config ./database.json --e test up & db-migrate reset --config ./database.json --e test",
+    "test":"npm run test-m & npm run test-r",
     "lint": "eslint \"src/**/*.ts\"",
     "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
     "migrate": "db-migrate --env test up & db-migrate up",
