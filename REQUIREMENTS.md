@@ -5,20 +5,26 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- Index ():Promise<Product[]>
-- Show (id:number):Promise<Product>
-- Create (product: Product): Promise<Product> [token required] 
+- Index () [get] - **route** : /user/:id/product/index
+- Show (id:number) [get] - **route** : /user/:id/product/:id
+- Create (product: Product) [token required] [post] - **route** : /user/:id/product/create
 - [OPTIONAL] Top 5 most popular products 
-- [OPTIONAL] Products by category (category: string): Promise<Product[]>
+- [OPTIONAL] Products by category (category: string) [get] - **route** : /user/:id/product/category/:cat
 
 #### Users
-- Index : Promise<User[]> [token required]
-- Show (id: number): Promise<User>[token required]
-- Create N (user: User): Promise<User>[token required]
-
+- Index()[token required] [get] - **route** : /user/index
+- Show (id: number) [token required] [get] - **route** : /user/:id
+- Create N (user: User)[token required] [post] - **route** : /user/signUp
+- authenticate (user:User) [get] - **route** : /user
+- delete (id:number) [delete] - **route** : /user/:id/delete
+- update (updatedUser:User,id:number) [put] - **route** : /user/:id/update
 #### Orders
-- Current Order by user (id: number): Promise<Order & OrderedProduct> [token required]
-- [OPTIONAL] Completed Orders by user (id: number): Promise<Order & OrderedProduct> [token required]
+- Current Order by user (id: number) [token required] [get] - **route** : /user/:id/order/current
+- [OPTIONAL] Completed Orders by user (id: number) [token required] [get] - **route** : /user/:id/order/completed
+- createOrder (newOrder:Order) [post] - **route** : /user/:id/order/addOrder
+- addProduct (newOrderdProduct:OrderedProduct) [post] - **route** : /user/:id/order/addProduct
+- setStatus (newStatus:Order) [post] - **route** : '/user/:id/order/setStatus
+- show (id:number) [get] - **route** : /user/:id/order/show
 
 ## Data Shapes
 #### Product
